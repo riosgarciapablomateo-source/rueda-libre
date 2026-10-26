@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rueda Libre - Taller de bicicletas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- menu -->
+  <header>
+    <div class="logo">Rueda Libre</div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section id="inicio">
+      <div class="inicio-texto">
+        <h1>Taller de bicicletas Rueda Libre</h1>
+        <p>Arreglamos todo tipo de bicis. Traela y en 48 horas la tenés lista.</p>
+        <a href="#contacto" class="boton">Pedir turno</a>
+      </div>
+      <span class="cartel">Presupuesto gratis</span>
+    </section>
+
+    <!-- NOSOTROS -->
+    <section id="nosotros">
+      <h2>Nosotros</h2>
+      <div class="nosotros-contenido contenedor clearfix">
+        <img src="img/taller.jpg" alt="Mecánico arreglando una bicicleta en el taller">
+        <p>Rueda Libre empezó en 2019 en un garaje del barrio. Al principio arreglábamos las bicis de los vecinos y de a poco se fue sumando más gente, hasta que pudimos abrir un local.</p>
+        <p>Hoy somos tres mecánicos. Antes de arreglar una bici te decimos qué tiene y cuánto sale, y si aparece otro problema te avisamos antes de cambiar algo.</p>
+        <p>Trabajamos con bicis de paseo, de ruta, mountain bikes y eléctricas.</p>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios">
+      <h2>Servicios</h2>
+      <div class="tarjetas contenedor">
+        <div class="tarjeta">
+          <h3>Service básico</h3>
+          <p>Ajuste de frenos y cambios, lubricación de cadena y control de presión.</p>
+          <p class="precio">$28.000</p>
+        </div>
+        <div class="tarjeta">
+          <h3>Service completo</h3>
+          <p>Desarmamos la bici, limpiamos todas las piezas y la volvemos a armar.</p>
+          <p class="precio">$55.000</p>
+        </div>
+        <div class="tarjeta">
+          <h3>Pinchaduras</h3>
+          <p>Parche o cambio de cámara en el momento.</p>
+          <p class="precio">$6.000</p>
+        </div>
+        <div class="tarjeta">
+          <h3>Centrado de ruedas</h3>
+          <p>Para cuando la rueda se mueve de costado o roza el freno.</p>
+          <p class="precio">$12.000</p>
+        </div>
+      </div>
+      <p class="aclaracion">Los precios son solo de mano de obra. Los repuestos se cobran aparte.</p>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <div class="contacto-contenido contenedor">
+        <div class="datos">
+          <p><strong>Dirección:</strong> Los Álamos 1450</p>
+          <p><strong>Teléfono:</strong> 387 321-2478</p>
+          <p><strong>Email:</strong> riosgarciapablomateo@gmail.com</p>
+          <p><strong>Horarios:</strong> lunes a viernes de 9 a 19 y sábados de 9 a 13</p>
+        </div>
+        <form>
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre">
+
+          <label for="telefono">Teléfono</label>
+          <input type="tel" id="telefono" name="telefono">
+
+          <label for="mensaje">¿Qué le pasa a tu bici?</label>
+          <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+
+          <button type="submit" class="boton">Enviar</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Rueda Libre 2026 - Mateo Rios - Proyecto integrador Unidad IV</p>
+  </footer>
+
+  <a href="#inicio" class="arriba">↑</a>
+
+</body>
+</html>
