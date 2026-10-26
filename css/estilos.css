@@ -1,0 +1,314 @@
+/* generales */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding-top: 64px; /* lo que ocupa el header fijo */
+  font-family: "Barlow", Arial, sans-serif;
+  font-size: 17px;
+  color: #1B1B1B;
+  background-color: #F6F1E7;
+}
+
+h1, h2, h3 {
+  font-family: "Barlow Condensed", Arial, sans-serif;
+  color: #1F3D36;
+}
+
+h2 {
+  font-size: 40px;
+  text-align: center;
+  margin-top: 0;
+}
+
+/* imagenes fluidas */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+section {
+  padding: 60px 0;
+  scroll-margin-top: 64px; /* sino el menu tapa el titulo */
+}
+
+/* contenedor centrado: fluido pero con un maximo */
+.contenedor {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.boton {
+  display: inline-block;
+  background-color: #B84A24;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.boton:hover {
+  background-color: #1F3D36;
+}
+
+/* header fijo arriba */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1F3D36;
+  padding: 15px 5%;
+}
+
+.logo {
+  font-family: "Barlow Condensed", Arial, sans-serif;
+  font-size: 28px;
+  color: #F2B134;
+}
+
+nav {
+  display: flex;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+nav a:hover {
+  color: #F2B134;
+}
+
+/* INICIO */
+#inicio {
+  position: relative; /* para ubicar el cartel adentro */
+  background-image: url("../img/portada.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+  text-align: center;
+}
+
+.inicio-texto {
+  background-color: rgba(246, 241, 231, 0.9);
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+#inicio h1 {
+  font-size: 48px;
+  margin-top: 0;
+}
+
+/* cartel arriba a la derecha (absolute respecto de #inicio) */
+.cartel {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #F2B134;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* NOSOTROS */
+#nosotros {
+  background-color: white;
+}
+
+.nosotros-contenido img {
+  float: left; /* el texto rodea la foto */
+  width: 40%;
+  margin-right: 30px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+
+/* para que el contenedor envuelva a la foto flotada */
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* SERVICIOS */
+.tarjetas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.tarjeta {
+  width: 23%;
+  background-color: white;
+  border: 2px solid #1F3D36;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.tarjeta h3 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.precio {
+  color: #B84A24;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.aclaracion {
+  text-align: center;
+  color: #555555;
+  margin-top: 10px;
+}
+
+/* CONTACTO */
+#contacto {
+  background-color: #1F3D36;
+  color: white;
+}
+
+#contacto h2 {
+  color: #F2B134;
+}
+
+.contacto-contenido {
+  display: flex;
+  justify-content: space-between;
+}
+
+.datos {
+  width: 45%;
+}
+
+form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+input,
+textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+/* footer */
+footer {
+  background-color: #1B1B1B;
+  color: #BBBBBB;
+  text-align: center;
+  padding: 15px;
+}
+
+/* boton de volver arriba, siempre en el mismo lugar */
+.arriba {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #F2B134;
+  color: #1B1B1B;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 45px;
+  font-size: 22px;
+  text-decoration: none;
+}
+
+/* tablet */
+@media only screen and (max-width: 768px) {
+  body {
+    padding-top: 82px;
+  }
+
+  header {
+    flex-direction: column;
+    padding: 10px 5%;
+  }
+
+  nav a {
+    margin: 8px 10px 0;
+  }
+
+  section {
+    padding: 50px 0;
+    scroll-margin-top: 82px;
+  }
+
+  #inicio {
+    padding: 100px 0;
+  }
+
+  .nosotros-contenido img {
+    float: none;
+    display: block;
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .tarjeta {
+    width: 48%;
+  }
+
+  .contacto-contenido {
+    flex-direction: column;
+  }
+
+  .datos,
+  form {
+    width: 100%;
+  }
+}
+
+/* celular */
+@media only screen and (max-width: 480px) {
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #inicio h1 {
+    font-size: 34px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  .cartel {
+    position: static;
+    display: inline-block;
+    margin-top: 20px;
+  }
+
+  .tarjeta {
+    width: 100%;
+  }
+}
