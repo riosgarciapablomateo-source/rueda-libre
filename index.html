@@ -3,105 +3,311 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rueda Libre, taller de bicicletas de barrio. Service, pinchaduras y centrado de ruedas en 48 horas.">
   <title>Rueda Libre - Taller de bicicletas</title>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/estilos.css">
-</head>
-<body>
 
-  <!-- menu -->
+  <!-- Bootstrap y Bootstrap Icons (copiados en la carpeta lib) -->
+  <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="lib/bootstrap-icons/bootstrap-icons.min.css">
+  <!-- mis estilos van despues para poder pisar los de Bootstrap -->
+  <link rel="stylesheet" href="css/estilos.css">
+  <!-- marca que hay JavaScript, para que las animaciones de entrada no parpadeen -->
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#menu" data-bs-offset="80" tabindex="0">
+
+  <!-- MENU: componente navbar de Bootstrap (CSS) + collapse (JS) -->
   <header>
-    <div class="logo">Rueda Libre</div>
-    <nav>
-      <a href="#inicio">Inicio</a>
-      <a href="#nosotros">Nosotros</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#contacto">Contacto</a>
+    <nav id="menu" class="navbar navbar-expand-md navbar-dark fixed-top barra">
+      <div class="container">
+        <a class="navbar-brand logo" href="#inicio">
+          <i class="bi bi-bicycle" aria-hidden="true"></i> Rueda Libre
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#links"
+                aria-controls="links" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="links">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
+            <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+            <li class="nav-item"><a class="nav-link" href="#taller">El taller</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
   </header>
 
   <main>
 
-    <section id="inicio">
-      <div class="inicio-texto">
-        <h1>Taller de bicicletas Rueda Libre</h1>
-        <p>Arreglamos todo tipo de bicis. Traela y en 48 horas la tenés lista.</p>
-        <a href="#contacto" class="boton">Pedir turno</a>
+    <!-- INICIO -->
+    <section id="inicio" class="portada">
+      <div class="container">
+        <div class="portada-texto aparecer">
+          <span class="cartel"><i class="bi bi-tag-fill" aria-hidden="true"></i> Presupuesto gratis</span>
+          <h1>Taller de bicicletas Rueda Libre</h1>
+          <p class="lead">Arreglamos todo tipo de bicis. Traela y en 48 horas la tenés lista.</p>
+          <a href="#contacto" class="btn boton btn-lg">
+            <i class="bi bi-calendar-check" aria-hidden="true"></i> Pedir turno
+          </a>
+        </div>
       </div>
-      <span class="cartel">Presupuesto gratis</span>
     </section>
 
     <!-- NOSOTROS -->
-    <section id="nosotros">
-      <h2>Nosotros</h2>
-      <div class="nosotros-contenido contenedor clearfix">
-        <img src="img/taller.jpg" alt="Mecánico arreglando una bicicleta en el taller">
-        <p>Rueda Libre empezó en 2019 en un garaje del barrio. Al principio arreglábamos las bicis de los vecinos y de a poco se fue sumando más gente, hasta que pudimos abrir un local.</p>
-        <p>Hoy somos tres mecánicos. Antes de arreglar una bici te decimos qué tiene y cuánto sale, y si aparece otro problema te avisamos antes de cambiar algo.</p>
-        <p>Trabajamos con bicis de paseo, de ruta, mountain bikes y eléctricas.</p>
+    <section id="nosotros" class="seccion bg-white">
+      <div class="container">
+        <h2 class="aparecer">Nosotros</h2>
+        <div class="row g-4 g-lg-5 align-items-center">
+          <div class="col-md-5 aparecer">
+            <img src="img/taller.jpg" class="foto-taller" alt="Mecánico ajustando el cambio trasero de una bicicleta en el taller">
+          </div>
+          <div class="col-md-7 aparecer">
+            <p>Rueda Libre empezó en 2019 en un garaje del barrio. Al principio arreglábamos las bicis de los vecinos y de a poco se fue sumando más gente, hasta que pudimos abrir un local.</p>
+            <p>Antes de arreglar una bici te decimos qué tiene y cuánto sale, y si aparece otro problema te avisamos antes de cambiar algo.</p>
+            <ul class="datos-taller">
+              <li><i class="bi bi-people-fill" aria-hidden="true"></i> Somos tres mecánicos</li>
+              <li><i class="bi bi-stopwatch" aria-hidden="true"></i> Bici lista en 48 horas</li>
+              <li><i class="bi bi-chat-dots-fill" aria-hidden="true"></i> Te avisamos antes de cambiar algo</li>
+              <li><i class="bi bi-lightning-charge-fill" aria-hidden="true"></i> Paseo, ruta, mountain bike y eléctricas</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- SERVICIOS -->
-    <section id="servicios">
-      <h2>Servicios</h2>
-      <div class="tarjetas contenedor">
-        <div class="tarjeta">
-          <h3>Service básico</h3>
-          <p>Ajuste de frenos y cambios, lubricación de cadena y control de presión.</p>
-          <p class="precio">$28.000</p>
+    <!-- SERVICIOS: grilla de Bootstrap con componentes card -->
+    <section id="servicios" class="seccion">
+      <div class="container">
+        <h2 class="aparecer">Servicios</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+          <div class="col aparecer">
+            <article class="card tarjeta h-100">
+              <div class="card-body">
+                <i class="bi bi-gear-fill icono" aria-hidden="true"></i>
+                <h3 class="card-title">Service básico</h3>
+                <p class="card-text">Ajuste de frenos y cambios, lubricación de cadena y control de presión.</p>
+              </div>
+              <div class="card-footer precio">$28.000</div>
+            </article>
+          </div>
+          <div class="col aparecer">
+            <article class="card tarjeta destacada h-100">
+              <span class="badge etiqueta">El más pedido</span>
+              <div class="card-body">
+                <i class="bi bi-tools icono" aria-hidden="true"></i>
+                <h3 class="card-title">Service completo</h3>
+                <p class="card-text">Desarmamos la bici, limpiamos todas las piezas y la volvemos a armar.</p>
+              </div>
+              <div class="card-footer precio">$55.000</div>
+            </article>
+          </div>
+          <div class="col aparecer">
+            <article class="card tarjeta h-100">
+              <div class="card-body">
+                <i class="bi bi-life-preserver icono" aria-hidden="true"></i>
+                <h3 class="card-title">Pinchaduras</h3>
+                <p class="card-text">Parche o cambio de cámara en el momento.</p>
+              </div>
+              <div class="card-footer precio">$6.000</div>
+            </article>
+          </div>
+          <div class="col aparecer">
+            <article class="card tarjeta h-100">
+              <div class="card-body">
+                <i class="bi bi-bullseye icono" aria-hidden="true"></i>
+                <h3 class="card-title">Centrado de ruedas</h3>
+                <p class="card-text">Para cuando la rueda se mueve de costado o roza el freno.</p>
+              </div>
+              <div class="card-footer precio">$12.000</div>
+            </article>
+          </div>
         </div>
-        <div class="tarjeta">
-          <h3>Service completo</h3>
-          <p>Desarmamos la bici, limpiamos todas las piezas y la volvemos a armar.</p>
-          <p class="precio">$55.000</p>
-        </div>
-        <div class="tarjeta">
-          <h3>Pinchaduras</h3>
-          <p>Parche o cambio de cámara en el momento.</p>
-          <p class="precio">$6.000</p>
-        </div>
-        <div class="tarjeta">
-          <h3>Centrado de ruedas</h3>
-          <p>Para cuando la rueda se mueve de costado o roza el freno.</p>
-          <p class="precio">$12.000</p>
+        <p class="aclaracion"><i class="bi bi-info-circle" aria-hidden="true"></i> Los precios son solo de mano de obra. Los repuestos se cobran aparte.</p>
+      </div>
+    </section>
+
+    <!-- EL TALLER: video + preguntas frecuentes (accordion de Bootstrap, JS) -->
+    <section id="taller" class="seccion bg-white">
+      <div class="container">
+        <h2 class="aparecer">El taller</h2>
+        <div class="row g-4 g-lg-5">
+          <div class="col-lg-7 aparecer">
+            <figure class="video-taller">
+              <video controls muted playsinline preload="metadata" poster="img/video-poster.jpg">
+                <source src="video/taller.mp4" type="video/mp4">
+                Tu navegador no puede reproducir el video.
+              </video>
+              <figcaption><i class="bi bi-camera-video" aria-hidden="true"></i> Así trabajamos: ajuste de cambios en el taller (video sin sonido).</figcaption>
+            </figure>
+          </div>
+          <div class="col-lg-5 aparecer">
+            <h3 class="subtitulo">Preguntas frecuentes</h3>
+            <div class="accordion preguntas" id="preguntas">
+              <div class="accordion-item">
+                <h4 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#p1" aria-expanded="true" aria-controls="p1">
+                    ¿Necesito sacar turno?
+                  </button>
+                </h4>
+                <div id="p1" class="accordion-collapse collapse show" data-bs-parent="#preguntas">
+                  <div class="accordion-body">Para pinchaduras no, las arreglamos en el momento. Para los service conviene pedir turno con el formulario así te esperamos.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h4 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p2" aria-expanded="false" aria-controls="p2">
+                    ¿Cuánto tarda el arreglo?
+                  </button>
+                </h4>
+                <div id="p2" class="accordion-collapse collapse" data-bs-parent="#preguntas">
+                  <div class="accordion-body">La mayoría de los arreglos están en 48 horas. Si hay que pedir un repuesto, te avisamos cuánto va a tardar.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h4 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p3" aria-expanded="false" aria-controls="p3">
+                    ¿Puedo llevar mis repuestos?
+                  </button>
+                </h4>
+                <div id="p3" class="accordion-collapse collapse" data-bs-parent="#preguntas">
+                  <div class="accordion-body">Sí. En ese caso solo pagás la mano de obra del servicio.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h4 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p4" aria-expanded="false" aria-controls="p4">
+                    ¿Arreglan bicis eléctricas?
+                  </button>
+                </h4>
+                <div id="p4" class="accordion-collapse collapse" data-bs-parent="#preguntas">
+                  <div class="accordion-body">Sí, la parte mecánica: frenos, cambios, ruedas y transmisión. La batería y el motor los revisa el service oficial de cada marca.</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <p class="aclaracion">Los precios son solo de mano de obra. Los repuestos se cobran aparte.</p>
     </section>
 
     <!-- CONTACTO -->
-    <section id="contacto">
-      <h2>Contacto</h2>
-      <div class="contacto-contenido contenedor">
-        <div class="datos">
-          <p><strong>Dirección:</strong> Los Álamos 1450</p>
-          <p><strong>Teléfono:</strong> 387 321-2478</p>
-          <p><strong>Email:</strong> riosgarciapablomateo@gmail.com</p>
-          <p><strong>Horarios:</strong> lunes a viernes de 9 a 19 y sábados de 9 a 13</p>
+    <section id="contacto" class="seccion contacto">
+      <div class="container">
+        <h2 class="aparecer">Contacto</h2>
+        <div class="row g-4 g-lg-5">
+          <div class="col-lg-4 aparecer">
+            <ul class="datos">
+              <li><i class="bi bi-geo-alt-fill" aria-hidden="true"></i> <span><strong>Dirección:</strong> Los Álamos 1450</span></li>
+              <li><i class="bi bi-telephone-fill" aria-hidden="true"></i> <span><strong>Teléfono:</strong> 387 321-2478</span></li>
+              <li><i class="bi bi-envelope-fill" aria-hidden="true"></i> <span><strong>Email:</strong> riosgarciapablomateo@gmail.com</span></li>
+              <li><i class="bi bi-clock-fill" aria-hidden="true"></i> <span><strong>Horarios:</strong> lunes a viernes de 9 a 19 y sábados de 9 a 13</span></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-8 aparecer">
+            <!-- novalidate: la validacion la hago con JS y los estilos de Bootstrap -->
+            <form id="formulario" class="formulario needs-validation" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="nombre" class="form-label">Nombre y apellido</label>
+                  <input type="text" class="form-control" id="nombre" name="nombre" autocomplete="name"
+                         required minlength="3" maxlength="60" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñÜü ]{3,60}">
+                  <div class="invalid-feedback">Escribí tu nombre (solo letras, mínimo 3).</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="telefono" class="form-label">Teléfono</label>
+                  <input type="tel" class="form-control" id="telefono" name="telefono" autocomplete="tel"
+                         required pattern="[0-9 \-]{8,20}" placeholder="387 321-2478" inputmode="tel">
+                  <div class="invalid-feedback">Poné un teléfono válido, por ejemplo 387 321-2478.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" autocomplete="email" required>
+                  <div class="invalid-feedback">Revisá el email, por ejemplo nombre@mail.com.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="tipo" class="form-label">Tipo de bici</label>
+                  <select class="form-select" id="tipo" name="tipo" required>
+                    <option value="" selected disabled>Elegí una opción</option>
+                    <option>Paseo</option>
+                    <option>Ruta</option>
+                    <option>Mountain bike</option>
+                    <option>Eléctrica</option>
+                  </select>
+                  <div class="invalid-feedback">Elegí el tipo de bici.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="servicio" class="form-label">Servicio</label>
+                  <select class="form-select" id="servicio" name="servicio" required>
+                    <option value="" selected disabled>Elegí una opción</option>
+                    <option>Service básico</option>
+                    <option>Service completo</option>
+                    <option>Pinchadura</option>
+                    <option>Centrado de ruedas</option>
+                    <option>No sé, quiero un presupuesto</option>
+                  </select>
+                  <div class="invalid-feedback">Elegí un servicio.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="fecha" class="form-label">Día que la traés</label>
+                  <input type="date" class="form-control" id="fecha" name="fecha" required>
+                  <div class="invalid-feedback" id="fecha-error">Elegí un día de lunes a sábado, desde hoy.</div>
+                </div>
+                <div class="col-12">
+                  <label for="mensaje" class="form-label">¿Qué le pasa a tu bici?</label>
+                  <textarea class="form-control" id="mensaje" name="mensaje" rows="4" required minlength="10" maxlength="400" aria-describedby="contador"></textarea>
+                  <div class="invalid-feedback">Contanos un poco más (mínimo 10 caracteres).</div>
+                  <small class="contador d-block text-end" id="contador">0/400</small>
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="acepto" name="acepto" required>
+                    <label class="form-check-label" for="acepto">Acepto que me contacten por teléfono o WhatsApp para confirmar el turno.</label>
+                    <div class="invalid-feedback">Tenés que aceptar para que te podamos confirmar el turno.</div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn boton btn-lg">
+                    <i class="bi bi-send-fill" aria-hidden="true"></i> Pedir turno
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-        <form>
-          <label for="nombre">Nombre</label>
-          <input type="text" id="nombre" name="nombre">
-
-          <label for="telefono">Teléfono</label>
-          <input type="tel" id="telefono" name="telefono">
-
-          <label for="mensaje">¿Qué le pasa a tu bici?</label>
-          <textarea id="mensaje" name="mensaje" rows="4"></textarea>
-
-          <button type="submit" class="boton">Enviar</button>
-        </form>
       </div>
     </section>
 
   </main>
 
-  <footer>
-    <p>Rueda Libre 2026 - Mateo Rios - Proyecto integrador Unidad IV</p>
+  <footer class="pie">
+    <p><i class="bi bi-bicycle" aria-hidden="true"></i> Rueda Libre 2026 - Mateo Rios - Proyecto integrador Unidad VIII</p>
   </footer>
 
-  <a href="#inicio" class="arriba">↑</a>
+  <!-- boton de volver arriba -->
+  <a href="#inicio" class="arriba" aria-label="Volver arriba"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
 
+  <!-- MODAL de Bootstrap (JS): se abre cuando el formulario es valido -->
+  <div class="modal fade" id="modalGracias" tabindex="-1" aria-labelledby="modalTitulo" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="modalTitulo"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> ¡Turno pedido!</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p id="modalTexto">Te vamos a escribir para confirmar el turno.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn boton" data-bs-dismiss="modal">Listo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="lib/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
