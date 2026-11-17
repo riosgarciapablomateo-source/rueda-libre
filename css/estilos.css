@@ -1,314 +1,530 @@
-/* generales */
-* {
-  box-sizing: border-box;
+/* =========================================================
+   Rueda Libre - Etapa 2
+   Uso Bootstrap para la grilla y los componentes, y esta hoja
+   para la identidad del taller (colores, tipografias, efectos).
+   ========================================================= */
+
+/* ---------- Tipografias externas con @font-face ----------
+   Los archivos .woff2 estan en la carpeta fonts (licencia OFL) */
+@font-face {
+  font-family: "Barlow";
+  src: url("../fonts/Barlow-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Barlow";
+  src: url("../fonts/Barlow-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("../fonts/BarlowCondensed-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- Colores (la misma paleta de la etapa 1) ---------- */
+:root {
+  --verde: #1F3D36;
+  --verde-claro: #2C5A4F;
+  --crema: #F6F1E7;
+  --naranja: #B84A24;
+  --naranja-oscuro: #9A3C1C;
+  --mostaza: #F2B134;
+  --negro: #1B1B1B;
+  --sombra: 0 6px 18px rgba(31, 61, 54, 0.12);
+  --sombra-fuerte: 0 14px 30px rgba(31, 61, 54, 0.22);
+  --alto-menu: 72px;
+}
+
+/* ---------- Generales ---------- */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  padding-top: 64px; /* lo que ocupa el header fijo */
   font-family: "Barlow", Arial, sans-serif;
   font-size: 17px;
-  color: #1B1B1B;
-  background-color: #F6F1E7;
+  color: var(--negro);
+  background-color: var(--crema);
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4,
+.logo {
   font-family: "Barlow Condensed", Arial, sans-serif;
-  color: #1F3D36;
+  font-weight: 700;
+  color: var(--verde);
 }
 
 h2 {
-  font-size: 40px;
+  font-size: 2.6rem;
   text-align: center;
-  margin-top: 0;
+  margin-bottom: 2.5rem;
 }
 
-/* imagenes fluidas */
-img {
+/* rayita mostaza debajo de cada titulo */
+h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  margin: 10px auto 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--mostaza), var(--naranja));
+}
+
+.seccion {
+  padding: 80px 0;
+  scroll-margin-top: var(--alto-menu); /* sino el menu tapa el titulo */
+}
+
+img,
+video {
   max-width: 100%;
   height: auto;
 }
 
-section {
-  padding: 60px 0;
-  scroll-margin-top: 64px; /* sino el menu tapa el titulo */
-}
-
-/* contenedor centrado: fluido pero con un maximo */
-.contenedor {
-  width: 90%;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
+/* ---------- Boton principal ---------- */
 .boton {
-  display: inline-block;
-  background-color: #B84A24;
+  background-color: var(--naranja);
   color: white;
-  padding: 12px 30px;
   border: none;
-  border-radius: 5px;
-  font-size: 18px;
-  text-decoration: none;
-  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(184, 74, 36, 0.35);
+  transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.boton:hover {
-  background-color: #1F3D36;
-}
-
-/* header fijo arriba */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #1F3D36;
-  padding: 15px 5%;
-}
-
-.logo {
-  font-family: "Barlow Condensed", Arial, sans-serif;
-  font-size: 28px;
-  color: #F2B134;
-}
-
-nav {
-  display: flex;
-}
-
-nav a {
+.boton:hover,
+.boton:focus-visible {
+  background-color: var(--naranja-oscuro);
   color: white;
-  text-decoration: none;
-  margin-left: 20px;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(184, 74, 36, 0.45);
 }
 
-nav a:hover {
-  color: #F2B134;
+.boton:active {
+  transform: translateY(0);
 }
 
-/* INICIO */
-#inicio {
-  position: relative; /* para ubicar el cartel adentro */
-  background-image: url("../img/portada.jpg");
+.boton i {
+  margin-right: 6px;
+}
+
+/* ---------- Menu (navbar de Bootstrap) ---------- */
+.barra {
+  background-color: var(--verde);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.logo,
+.logo:hover {
+  font-size: 1.9rem;
+  color: var(--mostaza);
+}
+
+.barra .nav-link {
+  color: white;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+/* subrayado animado del link activo y al pasar el mouse */
+.barra .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 2px;
+  height: 2px;
+  background-color: var(--mostaza);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.barra .nav-link:hover,
+.barra .nav-link.active {
+  color: var(--mostaza);
+}
+
+.barra .nav-link:hover::after,
+.barra .nav-link.active::after {
+  transform: scaleX(1);
+}
+
+/* ---------- Inicio ---------- */
+.portada {
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--alto-menu) + 40px) 0 60px;
+  /* el degradado oscurece la foto para que el texto se lea bien */
+  background-image:
+    linear-gradient(100deg, rgba(31, 61, 54, 0.85) 0%, rgba(31, 61, 54, 0.55) 45%, rgba(31, 61, 54, 0.1) 100%),
+    url("../img/portada.jpg");
   background-size: cover;
   background-position: center;
-  padding: 150px 0;
-  text-align: center;
 }
 
-.inicio-texto {
-  background-color: rgba(246, 241, 231, 0.9);
-  width: 90%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 30px;
-  border-radius: 8px;
+.portada-texto {
+  max-width: 560px;
+  color: var(--crema);
 }
 
-#inicio h1 {
-  font-size: 48px;
-  margin-top: 0;
+.portada h1 {
+  color: white;
+  font-size: clamp(2.6rem, 6vw, 4.2rem);
+  line-height: 1;
+  margin: 18px 0;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 
-/* cartel arriba a la derecha (absolute respecto de #inicio) */
 .cartel {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: #F2B134;
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-weight: bold;
+  display: inline-block;
+  background-color: var(--mostaza);
+  color: var(--negro);
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: var(--sombra);
 }
 
-/* NOSOTROS */
-#nosotros {
-  background-color: white;
+/* ---------- Nosotros ---------- */
+.foto-taller {
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: var(--sombra-fuerte);
 }
 
-.nosotros-contenido img {
-  float: left; /* el texto rodea la foto */
-  width: 40%;
-  margin-right: 30px;
-  margin-bottom: 15px;
-  border-radius: 8px;
+.datos-taller {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
 }
 
-/* para que el contenedor envuelva a la foto flotada */
-.clearfix::after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
-/* SERVICIOS */
-.tarjetas {
+.datos-taller li {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.tarjeta {
-  width: 23%;
-  background-color: white;
-  border: 2px solid #1F3D36;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background-color: var(--crema);
+  border-left: 4px solid var(--mostaza);
   border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
+  font-weight: 600;
 }
 
-.tarjeta h3 {
-  margin-top: 0;
-  font-size: 24px;
+.datos-taller i {
+  font-size: 1.4rem;
+  color: var(--naranja);
+}
+
+/* ---------- Servicios (cards de Bootstrap) ---------- */
+.tarjeta {
+  position: relative;
+  border: 2px solid var(--verde);
+  border-radius: 14px;
+  box-shadow: var(--sombra);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sombra-fuerte);
+}
+
+.tarjeta .card-title {
+  font-size: 1.6rem;
+}
+
+.icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 14px;
+  border-radius: 50%;
+  font-size: 1.6rem;
+  color: white;
+  background: linear-gradient(135deg, var(--verde-claro), var(--verde));
+  transition: transform 0.4s ease;
+}
+
+.tarjeta:hover .icono {
+  transform: rotate(-20deg) scale(1.08);
 }
 
 .precio {
-  color: #B84A24;
-  font-size: 22px;
-  font-weight: bold;
+  background-color: transparent;
+  border-top: 1px dashed rgba(31, 61, 54, 0.3);
+  color: var(--naranja);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.destacada {
+  border-color: var(--naranja);
+}
+
+.etiqueta {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background-color: var(--mostaza);
+  color: var(--negro);
+  font-weight: 600;
 }
 
 .aclaracion {
   text-align: center;
   color: #555555;
-  margin-top: 10px;
+  margin: 30px 0 0;
 }
 
-/* CONTACTO */
-#contacto {
-  background-color: #1F3D36;
+/* ---------- El taller: video y preguntas ---------- */
+.video-taller {
+  margin: 0;
+}
+
+.video-taller video {
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: var(--sombra-fuerte);
+  background-color: var(--negro);
+}
+
+.video-taller figcaption {
+  margin-top: 10px;
+  color: #555555;
+  font-size: 0.95rem;
+}
+
+.subtitulo {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+}
+
+.preguntas {
+  --bs-accordion-border-color: rgba(31, 61, 54, 0.2);
+  --bs-accordion-border-radius: 12px;
+  --bs-accordion-inner-border-radius: 11px;
+  --bs-accordion-active-bg: var(--crema);
+  --bs-accordion-active-color: var(--verde);
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.2rem rgba(242, 177, 52, 0.5);
+  box-shadow: var(--sombra);
+  border-radius: 12px;
+}
+
+.preguntas .accordion-header {
+  font-family: "Barlow", Arial, sans-serif;
+}
+
+.preguntas .accordion-button {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+/* ---------- Contacto ---------- */
+.contacto {
+  background: linear-gradient(160deg, var(--verde-claro) 0%, var(--verde) 60%);
   color: white;
 }
 
-#contacto h2 {
-  color: #F2B134;
-}
-
-.contacto-contenido {
-  display: flex;
-  justify-content: space-between;
+.contacto h2 {
+  color: var(--mostaza);
 }
 
 .datos {
-  width: 45%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-form {
-  width: 50%;
+.datos li {
   display: flex;
-  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+  overflow-wrap: anywhere; /* para que el mail no se salga en el celular */
 }
 
-label {
-  margin-bottom: 5px;
+.datos i {
+  color: var(--mostaza);
+  font-size: 1.3rem;
 }
 
-input,
-textarea {
-  margin-bottom: 15px;
-  padding: 10px;
+.formulario {
+  background-color: var(--crema);
+  color: var(--negro);
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* cuando el JS lleva el foco a un campo con error, que el menu fijo no lo tape */
+.formulario .form-control,
+.formulario .form-select,
+.formulario .form-check-input {
+  scroll-margin-top: 140px;
+}
+
+.formulario .form-label {
+  font-weight: 600;
+  color: var(--verde);
+}
+
+.formulario .form-control,
+.formulario .form-select {
+  border: 2px solid #d8d0c0;
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formulario .form-control:focus,
+.formulario .form-select:focus,
+.formulario .form-check-input:focus {
+  border-color: var(--mostaza);
+  box-shadow: 0 0 0 0.2rem rgba(242, 177, 52, 0.35);
+}
+
+.formulario .form-check-input:checked {
+  background-color: var(--verde);
+  border-color: var(--verde);
+}
+
+.contador {
+  color: #666666;
+}
+
+/* ---------- Modal ---------- */
+.modal-content {
   border: none;
-  border-radius: 5px;
-  font-family: inherit;
-  font-size: 16px;
+  border-radius: 14px;
+  box-shadow: var(--sombra-fuerte);
 }
 
-/* footer */
-footer {
-  background-color: #1B1B1B;
+.modal-title i {
+  color: var(--naranja);
+}
+
+/* ---------- Footer ---------- */
+.pie {
+  background-color: var(--negro);
   color: #BBBBBB;
   text-align: center;
-  padding: 15px;
+  padding: 18px;
 }
 
-/* boton de volver arriba, siempre en el mismo lugar */
+.pie p {
+  margin: 0;
+}
+
+/* ---------- Boton de volver arriba ---------- */
 .arriba {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #F2B134;
-  color: #1B1B1B;
-  width: 45px;
-  height: 45px;
+  z-index: 1020;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
-  text-align: center;
-  line-height: 45px;
-  font-size: 22px;
+  background-color: var(--mostaza);
+  color: var(--negro);
+  font-size: 1.4rem;
   text-decoration: none;
+  box-shadow: var(--sombra-fuerte);
+  /* aparece recien cuando bajas (lo activa main.js) */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
 
-/* tablet */
-@media only screen and (max-width: 768px) {
-  body {
-    padding-top: 82px;
-  }
-
-  header {
-    flex-direction: column;
-    padding: 10px 5%;
-  }
-
-  nav a {
-    margin: 8px 10px 0;
-  }
-
-  section {
-    padding: 50px 0;
-    scroll-margin-top: 82px;
-  }
-
-  #inicio {
-    padding: 100px 0;
-  }
-
-  .nosotros-contenido img {
-    float: none;
-    display: block;
-    width: 100%;
-    margin-right: 0;
-  }
-
-  .tarjeta {
-    width: 48%;
-  }
-
-  .contacto-contenido {
-    flex-direction: column;
-  }
-
-  .datos,
-  form {
-    width: 100%;
-  }
+.arriba.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
-/* celular */
-@media only screen and (max-width: 480px) {
-  nav {
-    flex-wrap: wrap;
-    justify-content: center;
+.arriba:hover {
+  color: var(--negro);
+  background-color: #f5c25a;
+}
+
+/* ---------- Animacion de entrada al hacer scroll ----------
+   main.js le agrega la clase .mostrar cuando el bloque entra en pantalla */
+.js .aparecer {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.js .aparecer.mostrar {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 767.98px) {
+  .barra .navbar-collapse {
+    padding-bottom: 10px;
   }
 
-  #inicio h1 {
-    font-size: 34px;
+  .barra .nav-link::after {
+    left: 0;
+    right: auto;
+    width: 40px;
+  }
+
+  .seccion {
+    padding: 60px 0;
   }
 
   h2 {
-    font-size: 32px;
+    font-size: 2.2rem;
   }
 
-  .cartel {
-    position: static;
-    display: inline-block;
-    margin-top: 20px;
+  .portada {
+    min-height: 80vh;
+    background-image:
+      linear-gradient(180deg, rgba(31, 61, 54, 0.85) 0%, rgba(31, 61, 54, 0.6) 100%),
+      url("../img/portada.jpg");
   }
 
-  .tarjeta {
-    width: 100%;
+  .formulario {
+    padding: 20px;
+  }
+}
+
+/* si la persona pidio menos movimiento en su sistema, saco las animaciones */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .js .aparecer {
+    opacity: 1;
+    transform: none;
   }
 }
