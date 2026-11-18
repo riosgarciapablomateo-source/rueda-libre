@@ -372,7 +372,7 @@ video {
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* cuando el JS lleva el foco a un campo con error, que el menu fijo no lo tape */
+/* cuando el navegador lleva al primer campo con error, que el menu fijo no lo tape */
 .formulario .form-control,
 .formulario .form-select,
 .formulario .form-check-input {
@@ -403,8 +403,90 @@ video {
   border-color: var(--verde);
 }
 
-.contador {
+.ayuda {
+  display: block;
+  margin-top: 4px;
   color: #666666;
+  font-size: 0.875rem;
+}
+
+/* ---------- Validacion solo con CSS ----------
+   :user-invalid se activa cuando la persona ya toco el campo (o intento enviar)
+   y no cumple required, pattern, minlength, min, etc. Asi el error no aparece
+   antes de que empiece a escribir. */
+.formulario .form-control:user-invalid,
+.formulario .form-select:user-invalid {
+  border-color: #c0392b;
+  background-color: #fff7f6;
+}
+
+.formulario .form-control:user-valid,
+.formulario .form-select:user-valid {
+  border-color: #2e8b57;
+}
+
+.formulario .form-check-input:user-invalid {
+  border-color: #c0392b;
+}
+
+.formulario :user-invalid ~ .invalid-feedback {
+  display: block;
+}
+
+/* ---------- Confirmacion del turno ----------
+   esta oculta y aparece cuando la URL termina en #gracias (:target) */
+.gracias {
+  display: none;
+  margin-bottom: 20px;
+  padding: 20px 24px;
+  border: none;
+  border-left: 6px solid var(--mostaza);
+  border-radius: 14px;
+  background-color: var(--crema);
+  color: var(--negro);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+  scroll-margin-top: 120px;
+}
+
+.gracias h3 {
+  font-size: 1.7rem;
+}
+
+.gracias h3 i {
+  color: #2e8b57;
+}
+
+.gracias:target {
+  display: block;
+  animation: aparecer 0.5s ease both;
+}
+
+/* ---------- Boton "Que incluye" de la tarjeta ---------- */
+.ver-mas {
+  color: var(--naranja);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.ver-mas:hover {
+  color: var(--naranja-oscuro);
+  text-decoration: underline;
+}
+
+.incluye {
+  list-style: none;
+  padding: 0;
+}
+
+.incluye li {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.incluye i {
+  color: var(--verde);
+  font-size: 1.2rem;
 }
 
 /* ---------- Modal ---------- */
@@ -447,35 +529,60 @@ video {
   font-size: 1.4rem;
   text-decoration: none;
   box-shadow: var(--sombra-fuerte);
-  /* aparece recien cuando bajas (lo activa main.js) */
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(12px);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-}
-
-.arriba.visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+  transition: transform 0.25s ease, background-color 0.25s ease;
 }
 
 .arriba:hover {
   color: var(--negro);
   background-color: #f5c25a;
+  transform: translateY(-4px);
 }
 
-/* ---------- Animacion de entrada al hacer scroll ----------
-   main.js le agrega la clase .mostrar cuando el bloque entra en pantalla */
-.js .aparecer {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+/* ---------- Animaciones con @keyframes ---------- */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-.js .aparecer.mostrar {
-  opacity: 1;
-  transform: none;
+/* Portada: el cartel, el titulo, el texto y el boton entran uno detras del otro
+   al cargar la pagina (cada uno con un poco mas de demora) */
+.portada-texto > * {
+  animation: aparecer 0.7s ease both;
+}
+
+.portada-texto > :nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.portada-texto > :nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.portada-texto > :nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+/* Resto de los bloques: la misma animacion, pero atada al scroll.
+   animation-timeline: view() hace que avance mientras el bloque entra en pantalla.
+   Solo se aplica en los navegadores que lo soportan; en los demas el contenido
+   se ve normal, sin animacion. */
+@supports (animation-timeline: view()) {
+  .aparecer {
+    animation: aparecer linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+
+  /* la portada ya tiene su propia animacion al cargar */
+  .portada-texto.aparecer {
+    animation: none;
+  }
 }
 
 /* ---------- Responsive ---------- */
@@ -521,10 +628,5 @@ video {
   *::after {
     transition: none !important;
     animation: none !important;
-  }
-
-  .js .aparecer {
-    opacity: 1;
-    transform: none;
   }
 }
