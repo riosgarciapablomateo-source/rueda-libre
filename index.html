@@ -11,8 +11,6 @@
   <link rel="stylesheet" href="lib/bootstrap-icons/bootstrap-icons.min.css">
   <!-- mis estilos van despues para poder pisar los de Bootstrap -->
   <link rel="stylesheet" href="css/estilos.css">
-  <!-- marca que hay JavaScript, para que las animaciones de entrada no parpadeen -->
-  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#menu" data-bs-offset="80" tabindex="0">
 
@@ -100,6 +98,10 @@
                 <i class="bi bi-tools icono" aria-hidden="true"></i>
                 <h3 class="card-title">Service completo</h3>
                 <p class="card-text">Desarmamos la bici, limpiamos todas las piezas y la volvemos a armar.</p>
+                <!-- abre el modal solo con los atributos de Bootstrap -->
+                <button type="button" class="btn btn-link ver-mas p-0" data-bs-toggle="modal" data-bs-target="#modalCompleto">
+                  <i class="bi bi-list-check" aria-hidden="true"></i> ¿Qué incluye?
+                </button>
               </div>
               <div class="card-footer precio">$55.000</div>
             </article>
@@ -207,8 +209,15 @@
           </div>
 
           <div class="col-lg-8 aparecer">
-            <!-- novalidate: la validacion la hago con JS y los estilos de Bootstrap -->
-            <form id="formulario" class="formulario needs-validation" novalidate>
+            <!-- la validacion la hace el navegador con los atributos de HTML5
+                 (required, pattern, minlength, min, type). Si todo esta bien,
+                 el formulario lleva a #gracias y se muestra el mensaje de confirmacion -->
+            <!-- confirmacion: esta oculta y aparece con :target cuando la URL termina en #gracias -->
+            <div id="gracias" class="alert gracias" role="status">
+              <h3><i class="bi bi-check-circle-fill" aria-hidden="true"></i> ¡Turno pedido!</h3>
+              <p class="mb-0">Gracias por escribirnos. Te vamos a contactar por teléfono o WhatsApp para confirmar el día.</p>
+            </div>
+            <form id="formulario" class="formulario" action="#gracias" method="get">
               <div class="row g-3">
                 <div class="col-md-6">
                   <label for="nombre" class="form-label">Nombre y apellido</label>
@@ -252,14 +261,15 @@
                 </div>
                 <div class="col-md-6">
                   <label for="fecha" class="form-label">Día que la traés</label>
-                  <input type="date" class="form-control" id="fecha" name="fecha" required>
-                  <div class="invalid-feedback" id="fecha-error">Elegí un día de lunes a sábado, desde hoy.</div>
+                  <input type="date" class="form-control" id="fecha" name="fecha" required min="2026-11-19" max="2027-12-31" aria-describedby="fecha-ayuda">
+                  <div class="invalid-feedback">Elegí qué día traés la bici (desde el 19/11/2026).</div>
+                  <small class="ayuda" id="fecha-ayuda">Abrimos de lunes a sábado.</small>
                 </div>
                 <div class="col-12">
                   <label for="mensaje" class="form-label">¿Qué le pasa a tu bici?</label>
-                  <textarea class="form-control" id="mensaje" name="mensaje" rows="4" required minlength="10" maxlength="400" aria-describedby="contador"></textarea>
+                  <textarea class="form-control" id="mensaje" name="mensaje" rows="4" required minlength="10" maxlength="400" aria-describedby="mensaje-ayuda"></textarea>
                   <div class="invalid-feedback">Contanos un poco más (mínimo 10 caracteres).</div>
-                  <small class="contador d-block text-end" id="contador">0/400</small>
+                  <small class="ayuda" id="mensaje-ayuda">Entre 10 y 400 caracteres.</small>
                 </div>
                 <div class="col-12">
                   <div class="form-check">
@@ -289,25 +299,32 @@
   <!-- boton de volver arriba -->
   <a href="#inicio" class="arriba" aria-label="Volver arriba"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
 
-  <!-- MODAL de Bootstrap (JS): se abre cuando el formulario es valido -->
-  <div class="modal fade" id="modalGracias" tabindex="-1" aria-labelledby="modalTitulo" aria-hidden="true">
+  <!-- MODAL de Bootstrap: lo abre el boton "¿Qué incluye?" con data-bs-toggle="modal" -->
+  <div class="modal fade" id="modalCompleto" tabindex="-1" aria-labelledby="modalTitulo" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title" id="modalTitulo"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> ¡Turno pedido!</h3>
+          <h3 class="modal-title" id="modalTitulo"><i class="bi bi-tools" aria-hidden="true"></i> Service completo</h3>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
         </div>
         <div class="modal-body">
-          <p id="modalTexto">Te vamos a escribir para confirmar el turno.</p>
+          <ul class="incluye">
+            <li><i class="bi bi-check2" aria-hidden="true"></i> Desarmado completo de la bici</li>
+            <li><i class="bi bi-check2" aria-hidden="true"></i> Limpieza y engrase de cadena, piñones y plato</li>
+            <li><i class="bi bi-check2" aria-hidden="true"></i> Revisión de rodamientos de ruedas, pedalera y dirección</li>
+            <li><i class="bi bi-check2" aria-hidden="true"></i> Ajuste de frenos y cambios</li>
+            <li><i class="bi bi-check2" aria-hidden="true"></i> Centrado de ruedas y control de presión</li>
+          </ul>
+          <p class="mb-0">Tarda 48 horas. Si hace falta cambiar algún repuesto, te avisamos antes.</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn boton" data-bs-dismiss="modal">Listo</button>
+          <button type="button" class="btn boton" data-bs-dismiss="modal">Entendido</button>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- solo el JavaScript de Bootstrap, para el menu, el acordeon, el modal y el scrollspy -->
   <script src="lib/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="js/main.js"></script>
 </body>
 </html>
